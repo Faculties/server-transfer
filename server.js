@@ -14,7 +14,7 @@ http.createServer(function (req, res) {
      * in strings is '\n' so instead of 'req.url' you should put:
      * req.url + "\n"
      */
-    fs.appendFile('received_data.txt','req.url',(err)=>{
+    fs.appendFile('received_data.txt', req.url + "\n",(err)=>{
     console.log(req.url + " " + "was appended to file!");
   });
   /* This isn't actually displaying the contents of the file
@@ -25,7 +25,7 @@ http.createServer(function (req, res) {
    */
   fs.readFile('received_data.txt', function(err, data){
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(req.url);
+    res.write(data);
     res.end();
   });
 }).listen(8080);
